@@ -1,27 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mecapp/home_screen/screens/widgets/extra_info_call.dart';
+import 'package:mecapp/utilities/theme/color_theme.dart';
 
-class Contentbox extends StatefulWidget {
+import '../../../utilities/common_class/common_class.dart';
+
+class ContentBox extends StatefulWidget {
   final String humid;
 
   final String pressure;
-  final String windspeed;
+  final String windSpeed;
 
-  const Contentbox({
+  const ContentBox({
     super.key,
     required this.humid,
-    required this.pressure, required this.windspeed
+    required this.pressure,
+    required this.windSpeed,
   });
 
   @override
-  State<Contentbox> createState() => _ContentboxState();
+  State<ContentBox> createState() => _ContentBoxState();
 }
 
-class _ContentboxState extends State<Contentbox> {
+class _ContentBoxState extends State<ContentBox> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shadowColor: Colors.blue,
+      shadowColor: colorTheme.blue,
       elevation: 50,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(30),
@@ -40,41 +45,23 @@ class _ContentboxState extends State<Contentbox> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
-                children: [
-                  Image.asset('assets/barometer.png', height: 26, width: 25),
-                  Text(
-                    '${widget.pressure.toString()}millibar',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  Text('Pressure', style: TextStyle(color: Colors.grey)),
-                ],
+              ExtraInfoCall(extraInfoValue: widget.pressure,
+                  extraInfoUnit: 'millibar',
+                  extraInfoName: 'Pressure',
+                  extraInfoIcon: imageLocations.pressureIconPng),
+              SizedBox(width: 25),
+              ExtraInfoCall(
+                extraInfoUnit: '%',
+                extraInfoName: 'Humidity',
+                extraInfoIcon: imageLocations.waterDropletPng,
+                extraInfoValue: widget.humid,
               ),
               SizedBox(width: 25),
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/water-droplet.png',
-                    height: 26,
-                    width: 25,
-                  ),
-                  Text(
-                    '${widget.humid.toString()}%',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  Text('Humidity', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-              SizedBox(width: 25),
-              Column(
-                children: [
-                  Image.asset('assets/wind.png', height: 26, width: 25),
-                  Text(
-                    '${widget.windspeed.toString()}Km/h',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  Text('Wind speed', style: TextStyle(color: Colors.grey)),
-                ],
+              ExtraInfoCall(
+                extraInfoValue: widget.windSpeed,
+                extraInfoUnit: 'Km/h',
+                extraInfoName: 'Wind speed',
+                extraInfoIcon: imageLocations.windIconPng,
               ),
             ],
           ),

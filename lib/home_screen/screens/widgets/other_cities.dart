@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mecapp/utilities/theme/color_theme.dart';
+
+import '../../../utilities/common_class/common_class.dart';
 
 
 class OtherCities extends StatefulWidget {
@@ -23,7 +26,7 @@ class _OtherCitiesState extends State<OtherCities> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Other Cities'),
+              Text('Other Cities',style: VariousTextStyle().extraInfoDescription,),
               IconButton(
                 onPressed: ()  {
                   //
@@ -77,7 +80,7 @@ class _OtherCitiesState extends State<OtherCities> {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Image.asset(
-                                      'assets/sun-behind-large-cloud.png',
+                                      imageLocations.sunWithCloudPng,
                                       height: 89,
                                     ),
 
@@ -88,7 +91,7 @@ class _OtherCitiesState extends State<OtherCities> {
                                         Row(
                                           children: [
                                             Image.asset(
-                                              'assets/pin.png',
+                                              imageLocations.pinIconPng,
                                               height: 25,
                                             ),
                                             Text(

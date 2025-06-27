@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'package:mecapp/view/login_screen/login_screen.dart';
 
+import '../../utilities/common_class/common_class.dart';
+import '../../utilities/theme/color_theme.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -30,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF1b8cfb),
-      body: Center(child: Image.asset('assets/sun.jpeg')),
+      body: Center(child: Image.asset(imageLocations.sunPng)),
     );
   }
 }

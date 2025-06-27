@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mecapp/utilities/theme/color_theme.dart';
 
 
+import '../../../utilities/common_class/common_class.dart';
 import '../service/model/home_screen_model.dart';
 
 class FutureForecasts extends StatefulWidget {
@@ -21,12 +23,12 @@ class _FutureForecastsState extends State<FutureForecasts> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Today'),
+            Text('Today',style: variousTextStyle.extraInfoDescription,),
             TextButton(
               onPressed: () {},
               child: Row(
                 children: [
-                  Text('7-Day Forecasts'),
+                  Text('7-Day Forecasts', style: variousTextStyle.extraInfoDescription,),
                   Icon(Icons.arrow_forward_ios),
                 ],
               ),
@@ -34,7 +36,7 @@ class _FutureForecastsState extends State<FutureForecasts> {
           ],
         ),
 
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 6,
           child: Row(

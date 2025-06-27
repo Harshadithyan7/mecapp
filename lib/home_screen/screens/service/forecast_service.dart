@@ -1,24 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:intl/intl.dart';
 import 'package:mecapp/utilities/common_class/common_class.dart';
+
 import 'model/home_screen_model.dart';
 
 forecastService(final double lat, final double lng) async {
-  var dio = Dio();
-  dio.options.contentType = Headers.jsonContentType;
-  List<LiveLocation> forecastData = [];
-  var response = await dio.get(
-    networkList.forecast,
-    queryParameters: {
-      'lon': lng,
-      'lat': lat,
-      'appid': 'e8f906423d1966d2736a4b39f0f9a386',
-      'units': 'metric',
-    },
-  );
   try {
+    var dio = Dio();
+    dio.options.contentType = Headers.jsonContentType;
+    List<LiveLocation> forecastData = [];
+    var response = await dio.get(
+      networkList.forecast,
+      queryParameters: {
+        // 'lon': lng,
+        // 'lat': lat,
+        // 'appid': 'e8f906423d1966d2736a4b39f0f9a386',
+        // 'units': 'metric',
+      },
+    );
     for (var hourlyUpdate in response.data['list']) {
       forecastData.add(
         LiveLocation(
@@ -45,6 +45,7 @@ forecastService(final double lat, final double lng) async {
     return forecastData;
   } catch (e) {
     debugPrint('catch in FutureForecast.......$e');
+    return [];
   }
 }
 
@@ -56,10 +57,10 @@ Future<List<LiveLocation>> getData(final double lat, final double lng) async {
     var response = await dio.get(
       networkList.weather,
       queryParameters: {
-        'lon': lng,
-        'lat': lat,
-        'appid': 'e8f906423d1966d2736a4b39f0f9a386',
-        'units': 'metric',
+        // 'lon': lng,
+        // 'lat': lat,
+        // 'appid': 'e8f906423d1966d2736a4b39f0f9a386',
+        // 'units': 'metric',
       },
     );
 
@@ -92,19 +93,19 @@ Future<List<LiveLocation>> getData(final double lat, final double lng) async {
 String getWeatherIcon(final String main) {
   switch (main) {
     case 'Clear':
-      return 'assets/foreground/clear.png';
+      return imageLocations.clearSkyPng;
     case 'Clouds':
-      return 'assets/foreground/clouds.png';
+      return imageLocations.cloudyPng;
     case 'Drizzle':
-      return 'assets/foreground/drizzle.png';
+      return imageLocations.drizzlePng;
     case 'Mist' || 'Fog' || 'Haze':
-      return 'assets/foreground/mist.jpg';
+      return imageLocations.mistyPng;
     case 'Snow':
-      return 'assets/foreground/snow.png';
+      return imageLocations.snowyPng;
     case 'Rain':
-      return 'assets/foreground/rain.png';
+      return imageLocations.rainyPng;
     case 'Thunderstorm':
-      return 'assets/foreground/thunderstorm.png';
+      return imageLocations.thunderStormPng;
   }
-  return 'assets/foreground/clear.png';
+  return imageLocations.clearSkyPng;
 }

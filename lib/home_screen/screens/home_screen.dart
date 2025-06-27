@@ -9,6 +9,9 @@ import 'package:mecapp/home_screen/screens/widgets/custom_container.dart';
 import 'package:mecapp/home_screen/screens/widgets/future_forecasts.dart';
 import 'package:mecapp/home_screen/screens/widgets/other_cities.dart';
 
+import '../../utilities/common_class/common_class.dart';
+import '../../utilities/theme/color_theme.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/pin.png', height: 40, width: 30),
+            Image.asset(imageLocations.pinIconPng, height: 40, width: 30),
             SizedBox(width: 8),
             if (locDetails.isNotEmpty)
               Text(
@@ -51,33 +54,31 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 50, width: double.infinity),
-              CustomContainer(
-                mainImageLocation: locDetails.isNotEmpty
-                    ? locDetails[0].imageLoc
-                    : 'assets/foreground/clear.png',
-                temp: locDetails.isNotEmpty
-                    ? locDetails[0].temp.substring(0, 2)
-                    : '0',
-                descrip: locDetails.isNotEmpty
-                    ? locDetails[0].weatherDescrip
-                    : 'null',
-              ),
-              SizedBox(height: 16),
-              Contentbox(
-                humid: locDetails.isNotEmpty ? locDetails[0].temp : '0',
-                pressure: locDetails.isNotEmpty ? locDetails[0].pressure : ' 0',
-                windspeed: locDetails.isNotEmpty ? locDetails[0].wind : "0",
-              ),
-              SizedBox(height: height / 20),
-              FutureForecasts(futureForecastList: futureForecast),
-              OtherCities(),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 50, width: double.infinity),
+            CustomContainer(
+              mainImageLocation: locDetails.isNotEmpty
+                  ? locDetails[0].imageLoc
+                  : imageLocations.clearSkyPng,
+              temp: locDetails.isNotEmpty
+                  ? locDetails[0].temp.substring(0, 2)
+                  : '0',
+              descrip: locDetails.isNotEmpty
+                  ? locDetails[0].weatherDescrip
+                  : 'null',
+            ),
+            SizedBox(height: 16),
+            ContentBox(
+              humid: locDetails.isNotEmpty ? locDetails[0].temp : '0',
+              pressure: locDetails.isNotEmpty ? locDetails[0].pressure : ' 0',
+              windSpeed: locDetails.isNotEmpty ? locDetails[0].wind : "0",
+            ),
+            SizedBox(height: height / 20),
+            FutureForecasts(futureForecastList: futureForecast),
+            OtherCities(),
+          ],
         ),
       ),
     );

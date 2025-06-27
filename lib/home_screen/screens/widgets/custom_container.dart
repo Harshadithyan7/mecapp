@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mecapp/utilities/theme/color_theme.dart';
 
 class CustomContainer extends StatefulWidget {
   final String temp;
@@ -34,7 +35,7 @@ class _CustomContainerState extends State<CustomContainer> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 gradient: LinearGradient(
-                  colors: [Colors.blue, Colors.lightBlue],
+                  colors: [ColorTheme().blue, ColorTheme().lighblue],
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
                 ),
@@ -47,12 +48,7 @@ class _CustomContainerState extends State<CustomContainer> {
                     alignment: Alignment(1, 0),
                     child: Text(
                       '${widget.temp}\u00B0',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 120,
-                        fontWeight: FontWeight.bold,
-                        height: 1,
-                      ),
+                      style: VariousTextStyle().mainTemp
                     ),
                   ),
                   Align(
@@ -62,7 +58,7 @@ class _CustomContainerState extends State<CustomContainer> {
                       maxLines: 2,
                       softWrap: true,
 
-                      style: TextStyle(color: Colors.white70),
+                      style: VariousTextStyle().weatherDescription,
                     ),
                   ),
                 ],
