@@ -13,10 +13,10 @@ forecastService(final double lat, final double lng) async {
     var response = await dio.get(
       networkList.forecast,
       queryParameters: {
-        // 'lon': lng,
-        // 'lat': lat,
-        // 'appid': 'e8f906423d1966d2736a4b39f0f9a386',
-        // 'units': 'metric',
+        'lon': lng,
+        'lat': lat,
+        'appid': 'e8f906423d1966d2736a4b39f0f9a386',
+        'units': 'metric',
       },
     );
     for (var hourlyUpdate in response.data['list']) {
@@ -57,10 +57,10 @@ Future<List<LiveLocation>> getData(final double lat, final double lng) async {
     var response = await dio.get(
       networkList.weather,
       queryParameters: {
-        // 'lon': lng,
-        // 'lat': lat,
-        // 'appid': 'e8f906423d1966d2736a4b39f0f9a386',
-        // 'units': 'metric',
+        'lon': lng,
+        'lat': lat,
+        'appid': 'e8f906423d1966d2736a4b39f0f9a386',
+        'units': 'metric',
       },
     );
 

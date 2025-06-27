@@ -8,10 +8,10 @@ import 'package:mecapp/home_screen/screens/widgets/content_box.dart';
 import 'package:mecapp/home_screen/screens/widgets/custom_container.dart';
 import 'package:mecapp/home_screen/screens/widgets/future_forecasts.dart';
 import 'package:mecapp/home_screen/screens/widgets/other_cities.dart';
+import 'package:mecapp/home_screen/screens/widgets/shimmer_widget.dart';
 
 import '../../utilities/common_class/common_class.dart';
 import '../../utilities/theme/color_theme.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   var dio = Dio();
+  bool loadingScreen = false;
   List<LiveLocation> locDetails = [];
   List<LiveLocation> futureForecast = [];
 
@@ -76,7 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
               windSpeed: locDetails.isNotEmpty ? locDetails[0].wind : "0",
             ),
             SizedBox(height: height / 20),
-            FutureForecasts(futureForecastList: futureForecast),
+            loadingScreen == true
+                ? FutureForecasts(futureForecastList: futureForecast)
+                : ShimmerWidget(),
             OtherCities(),
           ],
         ),
@@ -92,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
       nowLocation.latitude,
       nowLocation.longitude,
     );
+    loadingScreen = true;
 
     setState(() {});
   }
